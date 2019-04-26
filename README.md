@@ -1,5 +1,5 @@
 # Projeto-Jogo-LOP-2019.1
-Projeto do jogo da disciplina LOP 
+
 Etapas:
 
 1ª etapa: Desenhar no mínimo duas figuras geométricas ilustrando uma elipse como o jogador e um quadrado como um obstáculo. O jogador deve ser posicionado no lado oposto ao obstáculo. 
