@@ -5,8 +5,6 @@
         Etapa 1
         Jogo em Estilo Plataforma
 */
-var x = 95
-
 function setup() {
   createCanvas(800, 600);
 }
