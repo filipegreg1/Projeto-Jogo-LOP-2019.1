@@ -2,7 +2,7 @@
     Equipe: 
         Filipe Gregório de Farias e Silva - Subturma D (Líder) 
         Ivamar Dantas Roque - Subturma D 
-        Etapa 2
+        Etapa 1
         Jogo em Estilo Plataforma
 */
 var x = 95
