@@ -15,8 +15,8 @@ function draw() {
   fill(145,87,35);
   rect (650,485,50,68);
   fill (255);
-  ellipse (x,535,38,38);
+  ellipse (95,535,38,38);
   fill(0);
-  ellipse(x, 535, 30, 30);
+  ellipse(95, 535, 30, 30);
 
 }
