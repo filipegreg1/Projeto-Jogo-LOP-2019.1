@@ -29,7 +29,7 @@ function draw() {
   t++;
   yp = 0.5*(t)*(t - 30)
     if (yp > 0) {
-		// habilida a ocorrência de um novo pulo 
+		// habilita a ocorrência de um novo pulo 
 		pulo = false;
 		yp = 0; 		
 	}
