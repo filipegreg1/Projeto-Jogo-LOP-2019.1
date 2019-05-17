@@ -13,7 +13,7 @@ function draw() {
   //HUD
   text('Pontuação: '+parseInt(pontos), 10, 30);
   text('Nível: '+lvl, 300, 30);
-  pontos+=0.3;
+  pontos+=0.5;
   if(pontos%1000 == 0){
     lvl++;
   }
