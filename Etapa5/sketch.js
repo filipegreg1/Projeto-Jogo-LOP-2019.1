@@ -1,3 +1,10 @@
+/* 
+    Equipe: 
+        Filipe Gregório de Farias e Silva - Subturma D (Líder) 
+        Ivamar Dantas Roque - Subturma D 
+        Etapa 1
+        Jogo em Estilo Plataforma
+*/
 var x = 95, xx = 650, y = 535, yp = 0, t = 0;
 var pulo = false;
 var pontos = 0;
