@@ -9,8 +9,8 @@ var x = 95; y = 555; yp = 0; t = 0;
 var pulo = false;
 var pontos = 0;
 var lvl = 1;
-var vx = []; vy = []; vdx = [];vtam = []; vtam1 = [];
-var qt = 6; 
+var vx = []; vy = []; vdx = [];vtam = []; vtam1 = []; vnx = [];vny = [];vnx1 = [];vny1 = [];
+var qt = 8; 
 var vMuroTam = []; vMuroAlt = []; vMuroX = []; 
 var VveloX = -5;
 var tela = 0;
@@ -19,8 +19,11 @@ var anima;
 var textoX = 180; contTexto = 0; ContTexto = 0;
 function preload(){ //Imagens Etapa 10
   for(i = 0; i <3; i++){
-    imgAndando[i] = loadImage("Andre_andando_"+i+".png")
+    imgAndando[i] = loadImage("Andre_andando_"+i+".png");
   }
+  cenario = loadImage('fundo.png');
+  nuvem1 = loadImage('nuvem1.png');
+  nuvem2 = loadImage('nuvem2.png');
 }
 
 function gameover(){ //Tela game over Etapa 9
@@ -28,7 +31,7 @@ function gameover(){ //Tela game over Etapa 9
   background(0);
   textSize(32);
   fill(255,255,255);
-  text("GAME OVER :'( ",265,300);
+  text("GAME OVER ",265,300);
   text("Aperte ENTER para recomeçar!", 170, 350);
   if (keyIsDown(ENTER)) {
     pedramuro();
@@ -37,11 +40,19 @@ function gameover(){ //Tela game over Etapa 9
     tela = 0;
   }
 }
+function nuvem(){
+  for ( i = 1; i<5; i++){
+    vnx[i] = random (0,1200);
+    vny[i] = random (150,350);
+    vnx1[i] = random (0,800);
+    vny1[i] = random (50,150);
+  }
 
+}
 function pedramuro(){
   for ( i = 0; i < qt; i++) { //Vetor etapa 8
     vx[i] = random(0,800); 
-    vy[i] = random (565,575);
+    vy[i] = random (560,585);
     vtam[i] = 4
     vtam1[i] = random(3,10)
   }
@@ -56,6 +67,7 @@ function setup(){
   createCanvas(800, 600);
   frameRate(60); 
   pedramuro();
+  nuvem();
 }
 
 function draw() {
@@ -81,8 +93,10 @@ function draw() {
     }
   }
   if (tela == 1){
+    
     clear();
-    background(227,218,205)
+    background(188,60,61);
+    image(cenario, 400, 250, 800, 600);
     textSize(20)
   //HUD
     text('Pontuação: '+parseInt(pontos), 10, 30); //Etapa 5
@@ -100,14 +114,33 @@ function draw() {
       VveloX = -7;
       lvl++;
     }
+    if (pontos == 1500){
+      VveloX = -8;
+      lvl++;
+    }
     for ( i = 0; i < qt; i++) {
-    fill(0);
     vx[i] = vx[i] + VveloX; 
     if ( vx[i] < 0 ) {
       vx[i] = 800+random(0,200) //Etapa 3 dentro do vetor
     }
+    stroke(160,48,47);
     rect(0,550,800,1);
+    fill(222,86,88);
+    noStroke();
     rect(vx[i],vy[i],vtam1[i],vtam[i]); //Etapa 7 criação com vetores
+    stroke(0);
+    }
+    for (i = 1; i < 5;i++){ // CONTADOR NUVEM
+    vnx[i] = vnx[i] + VveloX/50; 
+    if ( vnx[i] < 0 ) {
+      vnx[i] = 800+random(0,200);
+    }
+    vnx1[i] = vnx1[i] + VveloX/50; 
+    if ( vnx1[i] < 0 ) {
+      vnx1[i] = 800+random(0,200);
+    }
+    image(nuvem1,vnx[i],vny[i],75,65);
+    image(nuvem2,vnx1[i],vny1[i],75,15);
     }
   //Comando de pulo
     if(keyIsDown(UP_ARROW)&& (!pulo)){
@@ -153,5 +186,6 @@ function draw() {
   }
   if (tela == 2){
     gameover();
+    nuvem();
   }
 }
