@@ -21,6 +21,7 @@ var animaPulo;
 var animaSent;
 var textoX = 180; contTexto = 0; ContTexto = 0;
 var imgPedra = [];
+var Moti;
 function preload(){ //Imagens Etapa 10
   for(i = 0; i <3; i++){
     imgAndando[i] = loadImage("Andre_andando_"+i+".png");
@@ -36,6 +37,7 @@ function preload(){ //Imagens Etapa 10
   noite = loadImage('fundon1.png');
   soundFormats('mp3', 'ogg');
   mexicano = loadSound('cucaracha.mp3');
+  Moti = loadImage("Motivacional.png");
 }
 
 function gameover(){ //Tela game over Etapa 9
@@ -43,9 +45,10 @@ function gameover(){ //Tela game over Etapa 9
   background(20);
   textSize(32);
   fill(255,255,255);
-  text("GAME OVER ",265,300);
-  image(animaSent, 430, 253);
-  text("Aperte ENTER para recomeçar!", 135, 350);
+  text("GAME OVER ",295,275);
+  image(animaSent, 500, 401);
+  image(Moti, 400, 500, 250,150);
+  text("Aperte ENTER para recomeçar!", 180, 325);
   if (keyIsDown(ENTER)) {
     pedramuro();
     lvl = 1;
