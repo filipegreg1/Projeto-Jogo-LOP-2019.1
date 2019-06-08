@@ -15,12 +15,20 @@ var vMuroTam = []; vMuroAlt = []; vMuroX = [];
 var VveloX = -5;
 var tela = 0;
 var imgAndando = []; contFrame = 0; paraFrame = 0;
-var anima;
+var anima; 
+var animaPulo; 
+var animaSent;
 var textoX = 180; contTexto = 0; ContTexto = 0;
+var imgPedra = [];
 function preload(){ //Imagens Etapa 10
   for(i = 0; i <3; i++){
     imgAndando[i] = loadImage("Andre_andando_"+i+".png");
   }
+  for(i = 0; i < 5; i++){
+    imgPedra[i] = loadImage("Muro_"+i+".png");
+  }
+  animaPulo = loadImage("Andre_pulo_0.png");
+  animaSent = loadImage("Andre_sentado_0.png");
   cenario = loadImage('fundo.png');
   nuvem1 = loadImage('nuvem1.png');
   nuvem2 = loadImage('nuvem2.png');
@@ -28,10 +36,11 @@ function preload(){ //Imagens Etapa 10
 
 function gameover(){ //Tela game over Etapa 9
   clear();
-  background(0);
+  background(20);
   textSize(32);
   fill(255,255,255);
   text("GAME OVER ",265,300);
+  image(animaSent, 430, 253);
   text("Aperte ENTER para recomeçar!", 170, 350);
   if (keyIsDown(ENTER)) {
     pedramuro();
@@ -158,7 +167,7 @@ function draw() {
     }
     fill(145,87,35);
     for(i = 0; i < 5; i++){
-      rect(vMuroX[i],570-vMuroAlt[i],vMuroTam[i],vMuroAlt[i])
+      image(imgPedra[i],vMuroX[i],600-vMuroAlt[i])
       vMuroX[i] += VveloX;
       if(vMuroX[i] < 0){
         vMuroX[i] = 1000;
@@ -166,9 +175,15 @@ function draw() {
     }
     fill (255);
   // Etapa 10
-    anima =  imgAndando[contFrame];
-    imageMode(CENTER)
-    image(anima,x, y+yp)
+    
+      anima =  imgAndando[contFrame];
+      imageMode(CENTER)
+    if(y+yp == y){
+      image(anima,x, y+yp)
+    }
+    if(y+yp< y){
+      image(animaPulo,x, y+yp);
+    }
     paraFrame++;
     if(paraFrame > 3){
       contFrame++;
@@ -176,16 +191,18 @@ function draw() {
     }
     if(contFrame > 2){
       contFrame = 0;
-    }   
+    }
     fill(0);
     for(i = 0; i <5; i++){
       if(dist(x,y+yp,vMuroX[i]+vMuroTam[i],570)<30){ //Etapa 6
         tela = 2;
       }
     }
+    
   }
   if (tela == 2){
     gameover();
     nuvem();
+    
   }
 }
